@@ -8,9 +8,7 @@ import AuthWrapper from './layouts/authWrapper';
 function App() {
   return (
     <div className="App">
-      
-
-      
+  
       <BrowserRouter>
       <AuthWrapper>
       <Routes>

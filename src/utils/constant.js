@@ -1,7 +1,7 @@
 import {toast} from 'react-toastify'
 
 const BASE_URL_LOGIN = 'https://frontend-test-backend.tritronik.com/Auth/login';
-const BASE_URL = 'https://frontend-test-backend.tritronik.com/'
+
 
 const notifError = () => {
     toast.error('Invalid Username / Password !', {
@@ -28,4 +28,4 @@ const notifSuccess = () => {
 
 
 
-export {BASE_URL_LOGIN, BASE_URL, notifError, notifSuccess}
+export {BASE_URL_LOGIN, notifError, notifSuccess}
