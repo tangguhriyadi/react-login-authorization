@@ -1,10 +1,10 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
-import { BASE_URL_LOGIN, notifError } from '../utils/constant'
+import { notifError } from '../utils/constant'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer} from 'react-toastify'
-
+/* import { BASE_URL_LOGIN } from '../utils/constant' */
 
 
 const Login = () => {
@@ -14,14 +14,16 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post(BASE_URL_LOGIN, {
+            const response = await axios.post(process.env.REACT_APP_BASE_URL_LOGIN, {
                 username:userName,
                 password:password
             })
             localStorage.setItem('token', response.data.access_token)
             if(response.request.status === 200){
                 navigate('/Home')
-            } 
+            } else {
+                notifError()
+            }
         } catch(err){
             console.log(err)
             notifError()

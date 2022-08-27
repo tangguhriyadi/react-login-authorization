@@ -16,6 +16,7 @@ const Home = () => {
         const fetchData = async () => {
             try {
             const response = await instance.get('v1/projects/')
+            console.log(response)
             setProjects(response)
             } catch(err){
                 console.log(err)
@@ -29,10 +30,24 @@ const Home = () => {
     <>
     <Container className="mt-4" fluid>
     <Button className="float-end" onClick={handleLogout}>logout</Button> <br />
-    <h2 className="text-center"> My Projects </h2>
+    <h2 style={{paddingLeft:'75px'}} className="d-flex justify-content-center"> My Projects </h2>
     <ReactPaginate
      previousLabel={'prev'}
      nextLabel={'next'}
+     pageCount={10}
+     breakLabel={'...'}
+     marginPagesDisplayed={2}
+     pageRangeDisplayed={3}
+     containerClassName={'pagination justify-content-center'}
+     pageClassName={'page-item'}
+     pageLinkClassName={'page-link'}
+     previousClassName={'page-item'}
+     previousLinkClassName={'page-link'}
+     nextClassName={'page-item'}
+     nextLinkClassName={'page-link'}
+     breakClassName={'page-item'}
+     breakLinkClassName={'page-link'}
+     activeClassName={'active'}
     />
     <ToastContainer />
     </Container>

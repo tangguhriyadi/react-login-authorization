@@ -1,6 +1,6 @@
 import {toast} from 'react-toastify'
-
-const BASE_URL_LOGIN = 'https://frontend-test-backend.tritronik.com/Auth/login';
+/* const BASE_URL = "https://frontend-test-backend.tritronik.com/" */
+/* const BASE_URL_LOGIN = 'https://frontend-test-backend.tritronik.com/Auth/login'; */
 
 
 const notifError = () => {
@@ -28,4 +28,4 @@ const notifSuccess = () => {
 
 
 
-export {BASE_URL_LOGIN, notifError, notifSuccess}
+export { notifError, notifSuccess}
