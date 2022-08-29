@@ -1,31 +1,35 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../utils/apiService";
-import ReactPaginate from "react-paginate";
-import Project from "../components/Project";
+import Paginate from "../components/Paginate";
 const Home = () => {
-  const [projects, setProjects] = useState(null);
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/Login");
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await instance.get("v1/projects/");
         console.log(response.data.content);
-        setProjects(response.data.content);
+        setData(response.data.content);
+        
       } catch (err) {
         console.log(err);
       }
+      
     };
     fetchData();
   }, []);
 
+ 
   return (
     <>
       <Container className="mt-4" fluid>
@@ -40,30 +44,7 @@ const Home = () => {
           {" "}
           My Projects{" "}
         </h2>
-        <ReactPaginate
-          previousLabel={"prev"}
-          nextLabel={"next"}
-          pageCount={10}
-          breakLabel={"..."}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          containerClassName={"pagination justify-content-center"}
-          pageClassName={"page-item"}
-          pageLinkClassName={"page-link"}
-          previousClassName={"page-item"}
-          previousLinkClassName={"page-link"}
-          nextClassName={"page-item"}
-          nextLinkClassName={"page-link"}
-          breakClassName={"page-item"}
-          breakLinkClassName={"page-link"}
-          activeClassName={"active"}
-        />
-        <Row className="pe-5 ps-5">
-          {projects &&
-            projects.map((project) => (
-              <Project key={project.id} project={project} />
-            ))}
-        </Row>
+        <Paginate datas={data} />
         <ToastContainer />
       </Container>
     </>
