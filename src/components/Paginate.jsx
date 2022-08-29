@@ -26,7 +26,6 @@ const Paginate = ({ datas }) => {
         previousLabel={"prev"}
         nextLabel={"next"}
         pageCount={pageCount}
-        breakLabel={"..."}
         pageRangeDisplayed={3}
         renderOnZeroPageCount={null}
         containerClassName={"pagination justify-content-center"}

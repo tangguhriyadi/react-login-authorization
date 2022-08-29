@@ -36,5 +36,16 @@ const notifAdd = (item) => {
     progress: undefined,
   });
 };
+const notifDelete = (item) => {
+  toast.warning(`project ${item} has successfully deleted !`, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
 
-export { notifAdd, notifError, notifSuccess, BASE_URL_LOGIN, BASE_URL };
+export { notifDelete, notifAdd, notifError, notifSuccess, BASE_URL_LOGIN, BASE_URL };

@@ -39,7 +39,7 @@ const AddNewProject = ({ show, handleClose }) => {
               ></Form.Control>
             </Form.Group>
             <div className="mt-4 text-end">
-            <Button type="submit" variant="success">
+            <Button onClick={handleSubmit} type="submit" variant="success">
               Add Project
             </Button>
             </div>
