@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-/* import { Button, Card, Col } from "react-bootstrap"; */
+import { Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
+import Project from "./Project";
 
 const Paginate = ({ datas }) => {
   const data = datas
@@ -21,28 +22,7 @@ const Paginate = ({ datas }) => {
   };
   return (
     <>
-      {/* <Col className="mb-4" md={4}>
-        <Card style={{ minHeight: "211px" }}>
-          <Card.Body>
-            <Card.Title>{project.name}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              {project.owner}
-            </Card.Subtitle>
-            <Card.Text className="text-center">{project.description ? project.description : '(empty description)'}</Card.Text>
-            
-            <div className="d-grid gap-2">
-              <Button variant="primary" size="md">
-                EDIT
-              </Button>
-              <Button variant="danger" size="md">
-                DELETE
-              </Button>
-            </div>
-          
-            
-          </Card.Body>
-        </Card>
-      </Col> */}
+      
       <ReactPaginate
           onPageChange={handlePageClick}
           previousLabel={"prev"}
@@ -62,13 +42,9 @@ const Paginate = ({ datas }) => {
           breakLinkClassName={"page-link"}
           activeClassName={"active"}
         />
-        <div>
-          {currentItems && currentItems.map((item) => {
-            return (
-              <h2 key={item.id}>{item.name}</h2>
-            )
-          })}
-        </div>
+        <Row>
+          {currentItems && currentItems.map((item) => (<Project key={item.id} item={item} />))}
+        </Row>
 
     </>
   );
