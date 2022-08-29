@@ -11,14 +11,10 @@ import { useSelector } from "react-redux";
 const Home = () => {
   const [data, setData] = useState([]);
   const [showCreate, setShowCreate] = useState(false);
-  /* const [showEdit, setShowEdit] = useState(false); */
   const navigate = useNavigate();
   const handleCloseCreate = () => setShowCreate(false);
   const handleShowCreate = () => setShowCreate(true);
-/*   const handleCloseEdit = () => setShowEdit(false);
-  const handleShowEdit = () => setShowEdit(true); */
-  /* const [dispatchDelete, setDispatchDelete] = useState(0); */
-  const dispatchDelete = useSelector(state => state.delete)
+  const dispatchUpdate = useSelector((state) => state.update);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -30,7 +26,7 @@ const Home = () => {
       try {
         const response = await instance.get("v1/projects/");
         console.log(response.data.content);
-        setData(response.data.content); 
+        setData(response.data.content);
       } catch (err) {
         console.log(err);
       }
@@ -39,37 +35,40 @@ const Home = () => {
     return () => {
       fetchData();
     };
-  }, [showCreate, dispatchDelete ]);
+  }, [showCreate, dispatchUpdate]);
 
-  
-    return (
-      <>
-        <Container className="mt-4" fluid>
-          <Button className="float-end" onClick={handleLogout}>
-            logout
-          </Button>{" "}
-          <br />
-          <h2
-            style={{ paddingLeft: "75px" }}
-            className="d-flex justify-content-center"
-          >
-            {" "}
-            My Projects{" "}
-          </h2>
-          <Button
-            onClick={handleShowCreate}
-            variant="success"
-            style={{ position: "absolute" }}
-          >
-            + Add New Project
-          </Button>
-          <AddNewProject handleClose={handleCloseCreate} show={showCreate} data={data} />
-          {/* <EditProject handleClose={handleCloseEdit} handleShow={handleShowEdit} show={showEdit} data={data} /> */}
-          <Paginate datas={data}  />
-          <ToastContainer />
-        </Container>
-      </>
-    );
+  return (
+    <>
+      <Container className="mt-4" fluid>
+        <Button className="float-end" onClick={handleLogout}>
+          logout
+        </Button>{" "}
+        <br />
+        <h2
+          style={{ paddingLeft: "75px" }}
+          className="d-flex justify-content-center"
+        >
+          {" "}
+          My Projects{" "}
+        </h2>
+        <Button
+          onClick={handleShowCreate}
+          variant="success"
+          style={{ position: "absolute" }}
+        >
+          + Add New Project
+        </Button>
+        <AddNewProject
+          handleClose={handleCloseCreate}
+          show={showCreate}
+          data={data}
+        />
+        
+        <Paginate datas={data} />
+        <ToastContainer />
+      </Container>
+    </>
+  );
 };
 
 export default Home;

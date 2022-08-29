@@ -1,10 +1,12 @@
-import DeleteReducer from "./DeleteReducer";
-import ModalReducer from "./ModalReducer";
+import UpdateReducer from "./UpdateReducer";
+import EditReducer from "./EditReducer";
+
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
-    delete:DeleteReducer,
-    modal:ModalReducer
+    update:UpdateReducer,
+    edit:EditReducer,
+
 })
 
 export default allReducers

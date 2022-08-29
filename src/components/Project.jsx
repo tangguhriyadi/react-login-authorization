@@ -2,18 +2,26 @@ import React from "react";
 import { Col, Card, Button } from "react-bootstrap";
 import { instance } from "../utils/apiService";
 import { notifDelete } from "../utils/constant";
-import {deleteAction} from '../actions'
+import {deleteAction, openEdit} from '../actions'
 import { useDispatch } from "react-redux";
-const Project = ({ item, /* setDispatchDelete  */}) => {
+
+
+const Project = ({ item, setSelected }) => {
     const dispatch = useDispatch()
+    
     const handleDelete = () => {
         instance.delete(`v1/projects/${item.id}`)
-        /* setDispatchDelete(item.id) */
         dispatch(deleteAction())
         notifDelete(item.name)
     }
+    const handleEdit = async () => {
+      const data = await instance.get(`v1/projects/${item.id}`)
+      setSelected(data.data)
+      dispatch(openEdit())
+    }
     
   return (
+    <>
     <Col className="mb-4" md={4}>
       <Card style={{ minHeight: "235px" }}>
         <Card.Body>
@@ -36,7 +44,7 @@ const Project = ({ item, /* setDispatchDelete  */}) => {
             <Card.Text > description: <br /><span style={{ color: "red" }}>(empty description)</span></Card.Text>
           )}
           <div className="d-grid gap-2">
-            <Button variant="primary" size="md">
+            <Button onClick={handleEdit} variant="primary" size="md">
               EDIT
             </Button>
             <Button onClick={handleDelete} variant="danger" size="md">
@@ -45,7 +53,9 @@ const Project = ({ item, /* setDispatchDelete  */}) => {
           </div>
         </Card.Body>
       </Card>
+      
     </Col>
+</>
   );
 };
 

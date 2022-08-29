@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
+import EditProject from "./EditProject";
 import Project from "./Project";
 
 const Paginate = ({ datas }) => {
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const [selected, setSelected] = useState({})
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -41,8 +43,9 @@ const Paginate = ({ datas }) => {
       />
       <Row>
         {currentItems &&
-          currentItems.map((item) => <Project key={item.id} item={item} />)}
+          currentItems.map((item) => <Project key={item.id} item={item} setSelected={setSelected} />)}
       </Row>
+      <EditProject selected={selected}  />
     </>
   );
 };
