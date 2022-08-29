@@ -7,7 +7,9 @@ const AuthWrapper = ({children}) => {
         const token = localStorage.getItem('token')
         if(!token && location.pathname !== '/Login'){
             navigate('/Login')
-        } 
+        } else if(token && location.pathname === '/'){
+          navigate('/Home')
+        }
     },[navigate, location])
   return (
     <div>{children}</div>
