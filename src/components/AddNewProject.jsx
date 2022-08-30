@@ -1,15 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { instance } from "../utils/apiService";
 import { notifAdd } from "../utils/constant";
 const AddNewProject = ({ show, handleClose }) => {
-    const [newProject, setNewProject] = useState({name: '', description: ''})
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        instance.post('v1/projects/', newProject)
-        handleClose()
-        notifAdd(newProject.name)
-    }
+  const [newProject, setNewProject] = useState({ name: "", description: "" });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    instance.post("v1/projects/", newProject);
+    handleClose();
+    notifAdd(newProject.name);
+  };
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -23,7 +23,9 @@ const AddNewProject = ({ show, handleClose }) => {
               <Form.Control
                 type="text"
                 placeholder="Enter Your Project Name"
-                onChange={(e) => setNewProject({...newProject, name: e.target.value})}
+                onChange={(e) =>
+                  setNewProject({ ...newProject, name: e.target.value })
+                }
                 required
               />
             </Form.Group>
@@ -33,16 +35,17 @@ const AddNewProject = ({ show, handleClose }) => {
                 as="textarea"
                 rows={3}
                 placeholder="Enter Description"
-                onChange={(e) => setNewProject({...newProject, description: e.target.value})}
+                onChange={(e) =>
+                  setNewProject({ ...newProject, description: e.target.value })
+                }
                 required
               />
             </Form.Group>
             <div className="mt-4 text-end">
-            <Button onClick={handleSubmit} type="submit" variant="success">
-              Add Project
-            </Button>
+              <Button onClick={handleSubmit} type="submit" variant="success">
+                Add Project
+              </Button>
             </div>
-            
           </Form>
         </Modal.Body>
       </Modal>

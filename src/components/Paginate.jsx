@@ -3,7 +3,7 @@ import { Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import EditProject from "./EditProject";
 import Project from "./Project";
-import {MoonLoader} from 'react-spinners'
+import { MoonLoader } from "react-spinners";
 
 const Paginate = ({ datas, loading }) => {
   const [currentItems, setCurrentItems] = useState(null);
@@ -43,8 +43,11 @@ const Paginate = ({ datas, loading }) => {
         activeClassName={"active"}
       />
       {loading ? (
-        <div style={{height:'80vh'}} className="d-flex justify-content-center align-items-center">
-        <MoonLoader color="#2c65e3" size={100} />
+        <div
+          style={{ height: "80vh" }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <MoonLoader color="#2c65e3" size={100} />
         </div>
       ) : (
         <Row>
