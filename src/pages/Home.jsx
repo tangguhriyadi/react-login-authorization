@@ -12,9 +12,13 @@ import { useSelector } from "react-redux";
 const Home = () => {
   const [data, setData] = useState([]);
   const [showCreate, setShowCreate] = useState(false);
+  const [dispatchClose, setDispatchClose] = useState(0)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
-  const handleCloseCreate = () => setShowCreate(false);
+  const handleCloseCreate = () => {
+    setShowCreate(false);
+    setDispatchClose(dispatchClose + 1)
+  };
   const handleShowCreate = () => setShowCreate(true);
   const dispatchUpdate = useSelector((state) => state.update);
   const handleLogout = () => {
@@ -38,7 +42,7 @@ const Home = () => {
     return () => {
       fetchData();
     };
-  }, [showCreate, dispatchUpdate]);
+  }, [dispatchUpdate, dispatchClose]);
 
   return (
     <>
