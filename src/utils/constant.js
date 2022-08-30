@@ -48,20 +48,8 @@ const notifEdit = (item) => {
     progress: undefined,
   });
 };
-const notifDelete = (item) => {
-  toast.warning(`project "${item}" has successfully deleted !`, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
-};
 
 export {
-  notifDelete,
   notifAdd,
   notifError,
   notifEdit,

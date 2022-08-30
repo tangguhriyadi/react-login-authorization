@@ -1,18 +1,31 @@
 import React from "react";
 import { Col, Card, Button } from "react-bootstrap";
 import { instance } from "../utils/apiService";
-import { notifDelete } from "../utils/constant";
+/* import { notifDelete } from "../utils/constant"; */
 import { deleteAction, openEdit } from "../actions";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPencil } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
 
 const Project = ({ item, setSelected }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
-    instance.delete(`v1/projects/${item.id}`);
-    dispatch(deleteAction());
-    notifDelete(item.name);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        instance.delete(`v1/projects/${item.id}`);
+        dispatch(deleteAction());
+        Swal.fire("Deleted!", "Your project has been deleted.", "success");
+      }
+    });
   };
   const handleEdit = async () => {
     let data = await instance.get(`v1/projects/${item.id}`);
