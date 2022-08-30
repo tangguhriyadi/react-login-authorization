@@ -3,12 +3,13 @@ import { Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import EditProject from "./EditProject";
 import Project from "./Project";
+import {MoonLoader} from 'react-spinners'
 
-const Paginate = ({ datas }) => {
+const Paginate = ({ datas, loading }) => {
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const [selected, setSelected] = useState({})
+  const [selected, setSelected] = useState({});
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -41,11 +42,20 @@ const Paginate = ({ datas }) => {
         breakLinkClassName={"page-link"}
         activeClassName={"active"}
       />
-      <Row>
-        {currentItems &&
-          currentItems.map((item) => <Project key={item.id} item={item} setSelected={setSelected} />)}
-      </Row>
-      <EditProject selected={selected}  />
+      {loading ? (
+        <div style={{height:'80vh'}} className="d-flex justify-content-center align-items-center">
+        <MoonLoader color="#2c65e3" size={100} />
+        </div>
+      ) : (
+        <Row>
+          {currentItems &&
+            currentItems.map((item) => (
+              <Project key={item.id} item={item} setSelected={setSelected} />
+            ))}
+        </Row>
+      )}
+
+      <EditProject selected={selected} />
     </>
   );
 };

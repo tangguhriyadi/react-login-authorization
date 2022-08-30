@@ -4,18 +4,18 @@ import { instance } from "../utils/apiService";
 import { notifDelete } from "../utils/constant";
 import {deleteAction, openEdit} from '../actions'
 import { useDispatch } from "react-redux";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faPencil } from '@fortawesome/free-solid-svg-icons'
 
 const Project = ({ item, setSelected }) => {
     const dispatch = useDispatch()
-    
-    const handleDelete = () => {
+    const handleDelete =  () => {
         instance.delete(`v1/projects/${item.id}`)
         dispatch(deleteAction())
         notifDelete(item.name)
     }
     const handleEdit = async () => {
-      const data = await instance.get(`v1/projects/${item.id}`)
+      let data = await instance.get(`v1/projects/${item.id}`)
       setSelected(data.data)
       dispatch(openEdit())
     }
@@ -45,10 +45,10 @@ const Project = ({ item, setSelected }) => {
           )}
           <div className="d-grid gap-2">
             <Button onClick={handleEdit} variant="primary" size="md">
-              EDIT
+            <FontAwesomeIcon icon={faPencil} /> EDIT
             </Button>
             <Button onClick={handleDelete} variant="danger" size="md">
-              DELETE
+              <FontAwesomeIcon icon={faTrashCan} /> DELETE
             </Button>
           </div>
         </Card.Body>
