@@ -70,7 +70,7 @@ const Home = () => {
         </Button>{" "}
         <br />
         <h2
-          style={{ paddingLeft: "75px" }}
+          style={{ paddingLeft: "90px" }}
           className="d-flex justify-content-center"
         >
           {" "}
