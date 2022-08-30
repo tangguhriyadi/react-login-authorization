@@ -25,7 +25,6 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await instance.get("v1/projects/");
-        console.log(response.data.content);
         setData(response.data.content);
       } catch (err) {
         console.log(err);

@@ -6,7 +6,6 @@ const AddNewProject = ({ show, handleClose }) => {
     const [newProject, setNewProject] = useState({name: '', description: ''})
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(newProject)
         instance.post('v1/projects/', newProject)
         handleClose()
         notifAdd(newProject.name)
