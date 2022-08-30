@@ -5,3 +5,11 @@ body {
 h2{
   color:#fff;
 }
+
+@media screen and (max-width:576px) {
+  .addNewProject{
+    display:block !important;
+    position: relative !important;
+    margin:10px auto !important;
+  }
+}

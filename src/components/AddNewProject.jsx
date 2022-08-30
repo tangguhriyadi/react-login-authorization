@@ -25,7 +25,7 @@ const AddNewProject = ({ show, handleClose }) => {
                 placeholder="Enter Your Project Name"
                 onChange={(e) => setNewProject({...newProject, name: e.target.value})}
                 required
-              ></Form.Control>
+              />
             </Form.Group>
             <Form.Group>
               <Form.Label>Description</Form.Label>
@@ -35,7 +35,7 @@ const AddNewProject = ({ show, handleClose }) => {
                 placeholder="Enter Description"
                 onChange={(e) => setNewProject({...newProject, description: e.target.value})}
                 required
-              ></Form.Control>
+              />
             </Form.Group>
             <div className="mt-4 text-end">
             <Button onClick={handleSubmit} type="submit" variant="success">

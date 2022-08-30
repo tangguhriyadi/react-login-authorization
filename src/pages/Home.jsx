@@ -62,6 +62,7 @@ const Home = () => {
           onClick={handleShowCreate}
           variant="success"
           style={{ position: "absolute" }}
+          className='addNewProject'
         >
           <FontAwesomeIcon icon={faPlus} /> Add New Project
         </Button>
